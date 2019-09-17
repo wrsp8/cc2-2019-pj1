@@ -60,7 +60,7 @@ Para la definicion de sus clases debe cumplir con lo siguiente:
  - Cada una de las clases que representen una política deben heredar de la clase abstracta `Policy` e implementar la interfaz `OrderManager` incluidas en las clases provistas para el proyecto. Todas estas deben pertenecer al paquete llamado `policies`, el cual es subpaquete del paquete `workshop`. Deben ser tres clases que correspondan a las políticas mencionadas anteriormente.
  - Las clases que representen a las políticas mencionadas, deberán ir modificando los campos heredados `currentOrders`, `queuedOrders` y `processedOrders` durante la ejecución del programa. Puede leer en la documentación las descripción de estos campos.  
 
- - Las clases que extienden a `OrdenPintura` DEBEN implementar los métodos abstractos de la siguiente manera:
+ - Las clases que extienden a `PaintOrder` DEBEN implementar los métodos abstractos de la siguiente manera:
     - `end()`: Debe cambiar el estado de la orden a DONE. Puede guiarse con el método `waiting()` de la clase `PaintOrder`.
      - `getType()`: Debe devolver *"SEDAN"*, *"MICRO"* o *"COUPE"* para las clases `SedanOrder`, `BusOrder` u `CoupeOrder` respectivamente.
      - `getPrice()`: Si la orden no está TERMINADA, debe devolver "?", de lo contario calcular el precio de la siguiente manera:

@@ -68,7 +68,7 @@ public abstract class PaintOrder {
      * Cambia el estado de la orden
      * @param pieces Cuántas piezas se deben pintar.
      *
-     * @throws Lanza un Exception si la cantidad de piezas es negativa, o mayor a las restantes.
+     * @throws Exception si la cantidad de piezas es negativa, o mayor a las restantes.
      * */
     public final void paint(int pieces) throws Exception {
         if (pieces > (this.total - this.painted) || pieces <= 0) {
