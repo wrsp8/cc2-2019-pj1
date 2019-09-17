@@ -1,8 +1,8 @@
-# CC2 - Proyecto #2 - Enderezado y Pintura
+# CC2 - Proyecto #1 - Workshop Scheduler
 
 ------------------------------------------------------------------------------
 **Proyecto:** WorkshopScheduler\
-**Tema:** Pilas, Colas, Herencia y Threads\
+**Tema:** Pilas, Colas, Paquetes, Herencia y Threads\
 **Fecha de Entrega:** 29 de septiembre de 2019\
 **Grupo:** Parejas\
 **Calificacion personal:** Nosotros le indicaremos la fecha.
@@ -27,10 +27,10 @@ A continuación le explicaremos algunas de las políticas para este proyecto:
  - Last Come First Served
  - Round Robin
 
-utilizando solo una cola de atencion.
+utilizando solo una cola de atención.
 
 ## Especificaciones:
-La política en que se manejarán las órdenes será escogida por el usuario al momento de ejecutar el programa. Por cada ejecución solo se podrá correr la simulación de una política a la vez (más adelante se mostrará cómo elige el usuario dicha politica). Ya escogida la política, su programa debe empezar la simulación de ingreso y atención de órdenes.
+La política en que se manejarán las órdenes será escogida por el usuario al momento de ejecutar el programa. Por cada ejecución solo se podrá correr la simulación de una política a la vez (más adelante se mostrará cómo elige el usuario dicha politica). Ya escogida la política, su programa debe empezar la simulación de ingreso y atención de órdenes. El ingreso y la atención de órdenes deben ser prcesos/acciones INDEPENDIENTES. 
 
 Cada orden debe guardar un número de orden y un tiempo de atención por pieza en segundos o milisegundos (como le funcione a ud mejor). Este tiempo está definido dependiendo el tipo de orden que sea. En este proyecto manejaremos tres tipos de órdenes: Sedán, Microbús, y Coupé. Los tiempos por pieza de cada tipo serán definidos al momento de mandar a ejecutar el programa, y serán fijos para todos las órdenes del mismo tipo. Ejemplo: Todos las órdenes de Microbuses duran 300 milisegundos, todas los de Sedanes duran 200 milisegundos, y así sucesivamente.
 
@@ -38,7 +38,7 @@ Las órdenes deben ser generadas en forma aleatoria, y en tiempos aleatorios. Ad
 
 Las órdenes generadas aleatoriamente se posicionaran en una "cola" de órdenes de atención. Dicha "cola" debe ser implementada según la política que se haya escogido. Nótese que "cola" hace referencia a una estructura de datos, la que se adapte mejor a la política.  
 
-Al mismo tiempo que llegan las órdenes a la "cola" el taller debe irlas atendiendo, otra vez, dependiendo de la política que se haya escogido. Cada orden tiene su tiempo de atención según la cantidad de piezas, y ese tiempo es lo que se debe tardar el "taller" en atenderlas. Como esto es solo una simulación, el taller solo tiene que "esperar" el período que la orden tardaría en ser atendida, en vez de atenderla en realidad. Es decir:
+El taller debe ir atendiendo las órdenes almacenadas en la estructura de datos, dependiendo de la política que se haya escogido. Cada orden tiene su tiempo de atención según la cantidad de piezas, y ese tiempo es lo que se debe tardar el "taller" en atenderlas. Como esto es solo una simulación, el taller solo tiene que "esperar" el período que la orden tardaría en ser atendida, en vez de atenderla en realidad. Es decir:
 
 Si una orden tiene tiempo de 1000 milisegundos por pieza y se necesita trabajar 3 piezas, entonces el taller debería ejecutar un:
 ```java
@@ -55,29 +55,32 @@ Después de ser atendida, la orden se elimina de la "cola" y se atiende la sigui
 Las clases que se le proveen para este proyecto están en este repositorio: [scheduler.zip](https://dl.dropboxusercontent.com/u/188149078/cc2/pj2/scheduler.zip), cuya documentacion puede encontrar [aqui](https://dl.dropboxusercontent.com/u/188149078/cc2/pj2/docs.zip)(se puede ver desde index.html).
 Para la definicion de sus clases debe cumplir con lo siguiente:
  - En este proyecto SE DEBE utilizar herencia, clases abstractas e interfaces.
- - Debe definir tres tipos de órdenes: `OrdenSedan`, `OrdenMicrobus` y `OrdenCoupe`. Se le provee una clase abstracta  `OrdenPintura` para que todos sus tipos de procesos hereden de ella (**TIENEN** que heredar de ella). Las clases que usted defina para esto deben pertenecer al paquete llamado `workshop.orders`. Recuerde que las órdenes ademas de su id(número de orden), guardan un tiempo de atención por pieza y este es IGUAL para todos las órdenes que sean del mismo tipo. El tiempo de cada orden es definido como argumento a la hora de iniciar la ejecución del programa.
+ - Debe definir tres tipos de órdenes: `SedanOrder`, `BusOrder` y `CoupeOrder`. Se le provee una clase abstracta  `PaintOrder` para que todos sus tipos de procesos hereden de ella (**TIENEN** que heredar de ella). Las clases que usted defina para esto deben pertenecer al paquete llamado `workshop.orders`. Recuerde que las órdenes ademas de su id(número de orden), guardan un tiempo de atención por pieza y este es IGUAL para todos las órdenes que sean del mismo tipo. El tiempo de cada orden es definido como argumento a la hora de iniciar la ejecución del programa.
  - Tome en cuenta que para la política Round Robin, la orden se atiende pieza por pieza.
- - Cada una de las clases que representen una política deben heredar de la clase abstracta `PoliticaAtencion` e implementar la interfaz `AdminOrdenes` incluidas en las clases proveidas para el proyecto. Todas estas deben pertenecer al paquete llamado `policies`, el cual es subpaquete del paquete `workshop`. 
-Y las clases que las utilicen deben importar este paquete.
+ - Cada una de las clases que representen una política deben heredar de la clase abstracta `Policy` e implementar la interfaz `OrderManager` incluidas en las clases provistas para el proyecto. Todas estas deben pertenecer al paquete llamado `policies`, el cual es subpaquete del paquete `workshop`. Deben ser tres clases que correspondan a las políticas mencionadas anteriormente.
+ - Las clases que representen a las políticas mencionadas, deberán ir modificando los campos heredados `currentOrders`, `queuedOrders` y `processedOrders` durante la ejecución del programa. Puede leer en la documentación las descripción de estos campos.  
+
  - Las clases que extienden a `OrdenPintura` DEBEN implementar los métodos abstractos de la siguiente manera:
-    - `finalizar()`: Debe cambiar el estado de la orden a TERMINADA. Puede guiarse con el método `esperar()` de la clase `OrdenPintura`.
-     - `getTipo()`: Debe devolver *"SEDAN"*, *"MICRO"* o *"COUPE"* para las clases `OrdenSedan`, `OrdenMicrobus` u `OrdenCoupe` respectivamente.
-     - `getPrecio()`: Si la orden no está TERMINADA, debe devolver "?", de lo contario calcular el precio de la siguiente manera:
+    - `end()`: Debe cambiar el estado de la orden a DONE. Puede guiarse con el método `waiting()` de la clase `PaintOrder`.
+     - `getType()`: Debe devolver *"SEDAN"*, *"MICRO"* o *"COUPE"* para las clases `SedanOrder`, `BusOrder` u `CoupeOrder` respectivamente.
+     - `getPrice()`: Si la orden no está TERMINADA, debe devolver "?", de lo contario calcular el precio de la siguiente manera:
          - Para los sedanes el precio será igual a la cantidad de piezas por el precio indicado.
-         - Para los microbuses, el precio tendrá un descuento y ese descuento se calcula tomando el tercer dígito de la placa del vehículo. Es decir que si la placa es `"74`**`2`**`FSP"`, el descuento total que se le hará efectivo sería el 2%.     Los vehículos tipo coupé también cuentan con un descuento, y este se calcula usando un número aleatorio entre 4 y 9%. No nos equivocamos, el precio debe retornarse como String. Ejemplo: si una orden de sedán tuvo 12 piezas y el precio por pieza es de 1000 quetzales, el método debe devolver "12000".
- - Las clases que heredan de `OrdenPintura` deben implementar un constructor que reciba TODOS los parámetros que recibe la clase padre en el constructor mas los demás parámetros que usted considere particulares para cada una de las subclases. Los constructores por supuesto que deben llamar al constructor de la super clase.
- - Cuando una orden esté en atención, (se esté trabajando), aplicarle el método `pintar(piezas)` para indicar que se trabajarán la cantidad de piezas parametrizadas. Puede revisar ese método en las clase `OrdenPintura` para analizar qué es lo que hace.
+         - Para los microbuses, el precio tendrá un descuento y ese descuento se calcula tomando el tercer dígito de la placa del vehículo. Es decir que si la placa es `"74`**`2`**`FSP"`, el descuento total que se le hará efectivo sería el 2%.     
+         - Los vehículos tipo coupé también cuentan con un descuento, y este se calcula usando un número aleatorio entre 4 y 9%. 
+         - No nos equivocamos, el precio debe retornarse como String. Ejemplo: si una orden de sedán tuvo 12 piezas y el precio por pieza es de 1000 quetzales, el método debe devolver "12000".
+ - Las clases que heredan de `PaintOrder` deben implementar un constructor que reciba TODOS los parámetros que recibe la clase padre en el constructor más los demás parámetros que usted considere particulares para cada una de las subclases. Los constructores por supuesto que deben llamar al constructor de la super clase.
+ - Cuando una orden esté en atención, (se esté trabajando), aplicarle el método `paint(pieces)` para indicar que se trabajarán la cantidad de piezas parametrizadas. Puede revisar la documentación, o bien, ese método en las clase `PaintOrder` para analizar qué es lo que hace.
  - **NO** puede ni debe modificar ninguna de las clases e interfaces provistas.
- - Las clases que defina (que no sean políticas o tipos de órdenes), deben pertenecer al paquete `workshop`, no estar dentro de un subpaquete de él. Ejemplo: taller y generador de órdenes.
+ - Las clases que defina (que no sean políticas o tipos de órdenes), deben pertenecer al paquete `workshop`, no estar dentro de un subpaquete de él.
  - DEBE utilizar pilas y colas para guardar las órdenes. **NO puede utilizar arreglos o ArrayList**.
 
  - Las clases como estructuras de datos que se le permiten utilizar son: [ConcurrentLinkedQueue<E>](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ConcurrentLinkedQueue.html) como cola, [Stack<E>](https://docs.oracle.com/javase/8/docs/api/java/util/Stack.html) como pila, [LinkedList<E>](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedList.html) como lista encadenada, proveidas en Java. La estructura de LinkedList solo puede ser utilizada en una política, no más. NO puede utilizar estructuras de datos hechas por usted.
  - NO puede utilizar Menús para la ejecución de políticas.
  - La clase principal: `WorkshopScheduler` no debe pertenecer a ningún paquete.
  - TODAS sus clases deben ir comentariadas de la siguiente forma:
-    - En la primera linea debe llevar siempre el nombre del archivo:
+    - En la primera línea debe llevar siempre el nombre del archivo:
     ```java
-    /* Orden.java */
+    /* Order.java */
     ```
     - En la parte de arriba deben llevar nombre del implementador, seccion y carnet:
     ```java
@@ -88,9 +91,9 @@ Y las clases que las utilicen deben importar este paquete.
     **/	
     ```
  - Después debe llevar una breve descripción de para qué sirve la clase.
- - Cada uno de los métodos debe llevar un comentario antes de la declaracion en donde diga cómo se llama el metodo, qué parametros recibe y qué devuelve al final y para qué sirve.
+ - Cada uno de los métodos debe llevar un comentario antes de la declaración en donde diga cómo se llama el metodo, qué parametros recibe y qué devuelve al final y para qué sirve.
 
-## Presentacion
+## Presentación
 Recuerde que usted debe seguir TODAS las especificaciones del proyecto para que no se le 
 bajen puntos en su calificación total del mismo. 
 He aquí entonces las especificaciones para su presentación:
@@ -119,6 +122,8 @@ El tiempo de atención por pieza para vehículos tipo microbús es 1 segundos.\
 El tiempo de atención por pieza para vehículos tipo coupé es 4 segundos.\
 El precio por pieza es de 1500 quetzales.
 
+**Si los parámetros son inválidos, indicar esto al usuario y no ejecutar nada más.**
+
 Ya escogida la política, el workshop Scheduler debe empezar el 
 simulador e imprimir los datos correspondientes en la pantalla. 
  - Al correr la simulación, su programa debe desplegar en pantalla la siguiente información:
@@ -126,7 +131,7 @@ simulador e imprimir los datos correspondientes en la pantalla.
  - Todos los datos de la orden que está siendo atendida.
  - La política que se está utilizando.
  - El número de órdenes ya atendidas (finalizadas) hasta el momento.
- - Cada vez que se dé una acción: Ingreso de orden a la cola, se terminó de atender una orden y se empieza a atender otra, se debe desplegar en pantalla toda la información: cola, órdenes, etc.
+ - Cada vez que se dé una acción: Ingreso de orden a la cola, finalizacón de una orden e inicio de atención de una orden, se debe desplegar en pantalla toda la información: ordenes pendientes, órdenes en atención, etc.
  - La información debe ser ordenada y legible.
  - Su programa terminará si oprimimos la tecla q. (Puede ser q y ENTER). Y
 puede detenerse en cualquier momento de la ejecución. Al detenerse debe imprimir en
@@ -139,10 +144,31 @@ sobre especificaciones SOLO puede preguntarle a los docentes del curso.
 
 ## Entrega de su solución
 Su programa debe compilar y correr para poder entregarlo.
-Todo su proyecto debe estar en un directorio llamado **pj2**, en el cual debe incluir los
+Todo su proyecto debe estar en un directorio llamado **pj1**, en el cual debe incluir los
 directorios ya hechos de los paquetes (con los paquetes ya compilados).
 Completado su directorio, debe agregarlo a un archivo **`pj1-grupo.zip`**
 y subirlo al GES.
+
+La estructura de entrega sería la siguiente:
+```
+pj1
+├── workshop
+│   ├── orders
+│   │   ├── PaintOrder.java
+│   │   ├── State.java
+│   │   ├── SedanOrder.java
+│   │   ├── BusOrder.java
+│   │   ├── CoupeOrder.java
+│   ├── policies
+│   │   ├── Policy.java
+│   │   ├── OrderManager.java
+│   │   ├── LastComeFirstServed.java
+│   │   ├── FirstComeFirstServed.java
+│   │   └── RoundRobin.java
+│   ├── OTRAS CLASES DEFINIDAS
+└── WorkshopScheduler.java
+```
+Los nombres de las clases correspondientes a las tres políticas pueden ser escogidos por usted.
 
 **No puede entregar su proyecto tarde**
 
@@ -154,15 +180,17 @@ Para poder implementar los puntos extra, debería haber terminado el proyecto co
  - Cualquier cosa adicional (que no sea otra política) que implemente por su propia cuenta y se considere para puntos extra.
 
 ## ¿Cómo empiezo?
-Tantas instrucciones podrían parecer confusas. Considere lo siguiente (si así gusta):
+Considere lo siguiente:
+ - Utilice GitHub. Tienen que utilizar git y GitHub para este proyecto, ustedes pueden encontrar un tutorial bastante bueno en el siguiente link. Cada vez que hagan un avance significativo en su proyecto porfavor realicen un commit y realicen un push hacia GitHub.
  - Lea completamente las instrucciones del proyecto. Si ya las leyó, puede preguntar.
+ - Lea la documentación de las clases dadas.
  - Use Slack para hacer preguntas que no compromentan código.
- - Comience definiendo las clases bajo el paquete `worshop.orders`. Si aún no ha visto paquetes en Java, no se preocupe, lo veremos. Aún así puede hacer
+ - Comience definiendo las clases bajo el paquete `worshop.orders`.
     la definición de las clases tal y como usted ya sabe hasta ahora.
  - Luego defina las políticas que van en el paquete `workshop.policies`. Implemente los métodos necesarios.
- - Ya teniendo definidas las órdenes y políticas, proceda a crear un Thread que se encargue de generar órdenes aleatorias dentro de alguna política, llamando al método respectivo `agregar(orden)`.
+ - Ya teniendo definidas las órdenes y políticas, proceda a crear un Thread que se encargue de generar órdenes aleatorias dentro de alguna política, llamando al método respectivo `add(orden)`.
  - HINT: el Thread anterior debe poder guardar solamente una de las tres políticas de atención (pero debe ser capaz de guardar cualquiera).
- - Luego genere un Thread que se encargue de ir atendiendo las órdenes almacenadas en la política (al igual que el anterior, debe poder atender a cualquier política), utilizando los métodos respectivos `remover()` y `siguiente()`.
+ - Luego genere un Thread que se encargue de ir atendiendo las órdenes almacenadas en la política (al igual que el anterior, debe poder atender a cualquier política), utilizando los métodos respectivos `remove()` y `next()`.
  - Encárguese de hacer  el programa principal `WorkshopScheduler` que lea los parámetros del usuario e inicialice todo.
  - Piense cómo poder implementar la funcionalidad de terminar la ejecución al presionar q (q + ENTER).
 
