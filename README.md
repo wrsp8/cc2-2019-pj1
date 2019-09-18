@@ -52,7 +52,7 @@ de una sola vez).
 Después de ser atendida, la orden se elimina de la "cola" y se atiende la siguiente.
 
 ## Definición de sus clases:
-Para este proyecto se le proveen ciertas clases (las cuales obtendra al seguir los pasos de la sección [¿Cómo-empiezo?](#¿Cómo-empiezo?) ), cuya documentacion puede encontrar [aqui](https://cc2-ug.github.io/cc2-2019-pj1/).
+Para este proyecto se le proveen ciertas clases (las cuales obtendra al seguir los pasos de la sección [¿Cómo-empiezo?](#cómo-empiezo) ), cuya documentacion puede encontrar [aqui](https://cc2-ug.github.io/cc2-2019-pj1/).
 Para la definicion de sus clases debe cumplir con lo siguiente:
  - En este proyecto SE DEBE utilizar herencia, clases abstractas e interfaces.
  - Debe definir tres tipos de órdenes: `SedanOrder`, `BusOrder` y `CoupeOrder`. Se le provee una clase abstracta  `PaintOrder` para que todos sus tipos de procesos hereden de ella (**TIENEN** que heredar de ella). Las clases que usted defina para esto deben pertenecer al paquete llamado `workshop.orders`. Recuerde que las órdenes ademas de su id(número de orden), guardan un tiempo de atención por pieza y este es IGUAL para todos las órdenes que sean del mismo tipo. El tiempo de cada orden es definido como argumento a la hora de iniciar la ejecución del programa.
@@ -180,8 +180,28 @@ Para poder implementar los puntos extra, debería haber terminado el proyecto co
  - Cualquier cosa adicional (que no sea otra política) que implemente por su propia cuenta y se considere para puntos extra.
 
 ## ¿Cómo empiezo?
+
+Antes de comenzar asegúrense de que hayan leído y comprendido todas las instrucciones del proyecto de principio a fin. Si tienen alguna pregunta pueden diríjanse a Slack y preguntar en los canales correspondientes, solamente si ya han leído completamente este documento.
+
+Tienen que utilizar git y GitHub para este proyecto, ustedes pueden encontrar un tutorial bastante bueno en el siguiente [link](https://rogerdudler.github.io/git-guide/index.es.html). Cada vez que hagan un avance significativo en su proyecto porfavor realicen un commit y realicen un push hacia GitHub.
+
+Para comenzar con el proyecto, primero tienen que tener todos los archivos base, estos se encuentran [aquí](https://classroom.github.com/g/N8wpFaPA). Tienen permitido trabajar en parejas o de forma individual, por lo que al aceptar la asignación les preguntará si desean crear un grupo nuevo o unirse a uno ya existente. Si crean un grupo nuevo, deben enviar un correo a su catedratico (_recuerde incluir en el asunto del correo CC2 y su sección_) para que se les asigne un número de grupo `N` el cual les servira para ingresar el nombre grupo con el formato `grupo-N`, por ejemplo si su número de grupo `2B` deberia ingresar `grupo-2B` como muestra la siguiente imagen:
+![Classroom 1](/docs/classroom1.png?raw=true)
+
+Si desean unirse a un grupo ya creado, tienen que buscar el nombre del grupo y pulsar el botón que dice join:
+![Classroom 2](/docs/classroom2.png?raw=true)
+
+**Tienen que tener mucho cuidado al unirse a un grupo ya existente, ya que esto no se puede cambiar después, además lo consideraremos como PLAGIO y obtendrá una nota de 0.**
+
+Ya sea que se unan o creen un nuevo grupo, al finalizar el proceso les creará automáticamente un repositorio con una extensión que termina con su nombre de grupo. Ya habiendo hecho todo eso, pueden ejecutar los siguientes comandos abriendo una terminal:
+
+```bash
+git clone <link del repositorio>
+```
+> NOTA: Tienen que reemplazar con el `<link del repositorio>` que se creó.
+
 Considere lo siguiente:
- - Utilice GitHub. Tienen que utilizar git y GitHub para este proyecto, ustedes pueden encontrar un tutorial bastante bueno en el siguiente link. Cada vez que hagan un avance significativo en su proyecto porfavor realicen un commit y realicen un push hacia GitHub.
+ - Cada vez que hagan un avance significativo en su proyecto porfavor realicen un commit y realicen un push hacia GitHub.
  - Lea completamente las instrucciones del proyecto. Si ya las leyó, puede preguntar.
  - Lea la documentación de las clases dadas.
  - Use Slack para hacer preguntas que no compromentan código.
