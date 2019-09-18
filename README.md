@@ -30,7 +30,7 @@ A continuación le explicaremos algunas de las políticas para este proyecto:
 utilizando solo una cola de atención.
 
 ## Especificaciones:
-La política en que se manejarán las órdenes será escogida por el usuario al momento de ejecutar el programa. Por cada ejecución solo se podrá correr la simulación de una política a la vez (más adelante se mostrará cómo elige el usuario dicha politica). Ya escogida la política, su programa debe empezar la simulación de ingreso y atención de órdenes. El ingreso y la atención de órdenes deben ser prcesos/acciones INDEPENDIENTES. 
+La política en que se manejarán las órdenes será escogida por el usuario al momento de ejecutar el programa. Por cada ejecución solo se podrá correr la simulación de una política a la vez (más adelante se mostrará cómo elige el usuario dicha politica). Ya escogida la política, su programa debe empezar la simulación de ingreso y atención de órdenes. El ingreso y la atención de órdenes deben ser procesos/acciones INDEPENDIENTES. 
 
 Cada orden debe guardar un número de orden y un tiempo de atención por pieza en segundos o milisegundos (como le funcione a ud mejor). Este tiempo está definido dependiendo el tipo de orden que sea. En este proyecto manejaremos tres tipos de órdenes: Sedán, Microbús, y Coupé. Los tiempos por pieza de cada tipo serán definidos al momento de mandar a ejecutar el programa, y serán fijos para todos las órdenes del mismo tipo. Ejemplo: Todos las órdenes de Microbuses duran 300 milisegundos, todas los de Sedanes duran 200 milisegundos, y así sucesivamente.
 
@@ -52,7 +52,7 @@ de una sola vez).
 Después de ser atendida, la orden se elimina de la "cola" y se atiende la siguiente.
 
 ## Definición de sus clases:
-Las clases que se le proveen para este proyecto están en este repositorio: [scheduler.zip](https://dl.dropboxusercontent.com/u/188149078/cc2/pj2/scheduler.zip), cuya documentacion puede encontrar [aqui](https://dl.dropboxusercontent.com/u/188149078/cc2/pj2/docs.zip)(se puede ver desde index.html).
+Para este proyecto se le proveen ciertas clases (las cuales obtendra al seguir los pasos de la sección [¿Cómo-empiezo?](#¿Cómo-empiezo?) ), cuya documentacion puede encontrar [aqui](https://cc2-ug.github.io/cc2-2019-pj1/).
 Para la definicion de sus clases debe cumplir con lo siguiente:
  - En este proyecto SE DEBE utilizar herencia, clases abstractas e interfaces.
  - Debe definir tres tipos de órdenes: `SedanOrder`, `BusOrder` y `CoupeOrder`. Se le provee una clase abstracta  `PaintOrder` para que todos sus tipos de procesos hereden de ella (**TIENEN** que heredar de ella). Las clases que usted defina para esto deben pertenecer al paquete llamado `workshop.orders`. Recuerde que las órdenes ademas de su id(número de orden), guardan un tiempo de atención por pieza y este es IGUAL para todos las órdenes que sean del mismo tipo. El tiempo de cada orden es definido como argumento a la hora de iniciar la ejecución del programa.
