@@ -132,6 +132,30 @@ simulador e imprimir los datos correspondientes en la pantalla.
  - La política que se está utilizando.
  - El número de órdenes ya atendidas (finalizadas) hasta el momento.
  - Cada vez que se dé una acción: Ingreso de orden a la cola, finalizacón de una orden e inicio de atención de una orden, se debe desplegar en pantalla toda la información: ordenes pendientes, órdenes en atención, etc.
+ - Ejemplo de despliegue:
+```
+---------------
+Nuevo ingreso! Se ingresó un SEDAN que necesita 3 piezas (correlativo #8)
+
+Política seleccionada: First Come First Served
+
+Actualmente se atiende a: COUPE, 1 pieza (correlativo #5)
+Ordenes pendientes: SEDAN 2 piezas (#6) | MICROBUS 4 piezas (#7) | SEDAN 3 piezas (#8)
+---------------
+
+
+---------------
+Orden completa! Se completó COUPE que necesitaba 1 pieza (correlativo #5)
+Precio original: 1000
+Descuento: 5%
+Total a pagar: 950
+
+Política seleccionada: First Come First Served
+
+Actualmente se atiende a: SEDAN 2 piezas (correlativo #6)
+Ordenes pendientes: MICROBUS 4 piezas (#7) | SEDAN 3 piezas (#8)
+---------------
+```
  - La información debe ser ordenada y legible.
  - Su programa terminará si oprimimos la tecla q. (Puede ser q y ENTER). Y
 puede detenerse en cualquier momento de la ejecución. Al detenerse debe imprimir en
