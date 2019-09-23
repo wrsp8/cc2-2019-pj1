@@ -156,6 +156,32 @@ Actualmente se atiende a: SEDAN 2 piezas (correlativo #6)
 Ordenes pendientes: MICROBUS 4 piezas (#7) | SEDAN 3 piezas (#8)
 ---------------
 ```
+ - Ejemplo de despliegue para Round Robin:
+```
+---------------
+Se terminó de trabajar pieza! Se completó pieza 2 de 3 de COUPE (correlativo #11)
+
+Política seleccionada: Round Robin
+
+Actualmente se atiende a: MICROBUS pieza 2 de 4 (correlativo #12)
+Ordenes pendientes: MICROBUS 2 de 4 (#12) | SEDAN 1 de 2 (#13) | COUPE 2 de 3 (# 11)
+---------------
+
+...
+
+---------------
+Orden completa! Se completó pieza 2 de 2 de SEDAN (correlativo #13)
+Precio original: 400 por pieza
+Cantidad de piezas: 2
+Total a pagar: 800
+
+Política seleccionada: Round Robin
+
+Actualmente se atiende a: COUPE pieza 3 de 3 (correlativo #11)
+Ordenes pendientes: COUPE 3 de 3 (#11) | MICROBUS 3 de 4 (#12) | SEDAN 0 de 4 (#14)
+---------------
+```
+
  - La información debe ser ordenada y legible.
  - Su programa terminará si oprimimos la tecla q. (Puede ser q y ENTER). Y
 puede detenerse en cualquier momento de la ejecución. Al detenerse debe imprimir en
