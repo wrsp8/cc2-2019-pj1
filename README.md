@@ -3,7 +3,7 @@
 ------------------------------------------------------------------------------
 **Proyecto:** WorkshopScheduler\
 **Tema:** Pilas, Colas, Paquetes, Herencia y Threads\
-**Fecha de Entrega:** 29 de septiembre de 2019\
+**Fecha de Entrega:** 6 de octubre de 2019\
 **Grupo:** Parejas\
 **Calificacion personal:** Nosotros le indicaremos la fecha.
 
@@ -30,9 +30,9 @@ A continuación le explicaremos algunas de las políticas para este proyecto:
 utilizando solo una cola de atención.
 
 ## Especificaciones:
-La política en que se manejarán las órdenes será escogida por el usuario al momento de ejecutar el programa. Por cada ejecución solo se podrá correr la simulación de una política a la vez (más adelante se mostrará cómo elige el usuario dicha politica). Ya escogida la política, su programa debe empezar la simulación de ingreso y atención de órdenes. El ingreso y la atención de órdenes deben ser procesos/acciones INDEPENDIENTES. 
+La política en que se manejarán las órdenes será escogida por el usuario al momento de ejecutar el programa. Por cada ejecución solo se podrá correr la simulación de una política a la vez (más adelante se mostrará cómo elige el usuario dicha política). Ya escogida la política, su programa debe empezar la simulación de ingreso y atención de órdenes. El ingreso y la atención de órdenes deben ser procesos/acciones INDEPENDIENTES. 
 
-Cada orden debe guardar un número de orden y un tiempo de atención por pieza en segundos o milisegundos (como le funcione a ud mejor). Este tiempo está definido dependiendo el tipo de orden que sea. En este proyecto manejaremos tres tipos de órdenes: Sedán, Microbús, y Coupé. Los tiempos por pieza de cada tipo serán definidos al momento de mandar a ejecutar el programa, y serán fijos para todos las órdenes del mismo tipo. Ejemplo: Todos las órdenes de Microbuses duran 300 milisegundos, todas los de Sedanes duran 200 milisegundos, y así sucesivamente.
+Cada orden debe guardar un número de orden y un tiempo de atención por pieza en segundos o milisegundos (como le funcione a usted mejor). Este tiempo está definido dependiendo el tipo de orden que sea. En este proyecto manejaremos tres tipos de órdenes: Sedán, Microbús, y Coupé. Los tiempos por pieza de cada tipo serán definidos al momento de mandar a ejecutar el programa, y serán fijos para todos las órdenes del mismo tipo. Ejemplo: Todos las órdenes de Microbuses duran 300 milisegundos, todas los de Sedanes duran 200 milisegundos, y así sucesivamente.
 
 Las órdenes deben ser generadas en forma aleatoria, y en tiempos aleatorios. Además, las placas de los vehículos deben generarse en forma aletoria en formato `'DDDLLL'` (`D` = Dígito y `L` = Letra Mayúscula). Ejemplo: La placa generada para cierta orden podría ser `071CVR`. El número de orden debe ir incrementando (no es aleatorio) con cada nueva orden, es decir que la primer orden tendrá numOrden = 1, el segundo numOrden = 2, etc. Su tipo será aleatorio, es decir que se eligirá de forma aleatorea qué tipo de orden es (coupé, sedán o microbús). El numero correlativo es compartido entre todos los tipos de órdenes, es decir que no hay contadores separados para cada tipo.
 
@@ -44,18 +44,18 @@ Si una orden tiene tiempo de 1000 milisegundos por pieza y se necesita trabajar 
 ```java
 Thread.sleep(3000);
 ```
-para tardarse exactamente lo que la orden debe tardarse. La simulación de la atencion al proceso es simplemente pausar el programa procesador por el tiempo que la orden tenga asociado, no hay que hacer nada más.
+para tardarse exactamente lo que la orden debe tardarse. La simulación de la atención al proceso es simplemente pausar el programa procesador por el tiempo que la orden tenga asociado, no hay que hacer nada más.
 
-Recuerde que para la política Round Robin, la orden se trabajaba pieza por pieza. Para las otras dos, la orden se trabaja por completo (se atienden todas las piezas de la orden
+Recuerde que para la política Round Robin, la orden se trabaja pieza por pieza. Para las otras dos, la orden se trabaja por completo (se atienden todas las piezas de la orden
 de una sola vez).
 
 Después de ser atendida, la orden se elimina de la "cola" y se atiende la siguiente.
 
 ## Definición de sus clases:
-Para este proyecto se le proveen ciertas clases (las cuales obtendra al seguir los pasos de la sección [¿Cómo-empiezo?](#cómo-empiezo) ), cuya documentacion puede encontrar [aqui](https://cc2-ug.github.io/cc2-2019-pj1/).
+Para este proyecto se le proveen ciertas clases (las cuales obtendrá al seguir los pasos de la sección [¿Cómo-empiezo?](#cómo-empiezo) ), cuya documentacion puede encontrar [aquí](https://cc2-ug.github.io/cc2-2019-pj1/).
 Para la definicion de sus clases debe cumplir con lo siguiente:
  - En este proyecto SE DEBE utilizar herencia, clases abstractas e interfaces.
- - Debe definir tres tipos de órdenes: `SedanOrder`, `BusOrder` y `CoupeOrder`. Se le provee una clase abstracta  `PaintOrder` para que todos sus tipos de procesos hereden de ella (**TIENEN** que heredar de ella). Las clases que usted defina para esto deben pertenecer al paquete llamado `workshop.orders`. Recuerde que las órdenes ademas de su id(número de orden), guardan un tiempo de atención por pieza y este es IGUAL para todos las órdenes que sean del mismo tipo. El tiempo de cada orden es definido como argumento a la hora de iniciar la ejecución del programa.
+ - Debe definir tres tipos de órdenes: `SedanOrder`, `BusOrder` y `CoupeOrder`. Se le provee una clase abstracta  `PaintOrder` para que todos sus tipos de órdenes hereden de ella (**TIENEN** que heredar de ella). Las clases que usted defina para esto deben pertenecer al paquete llamado `workshop.orders`. Recuerde que las órdenes además de su id (número de orden), guardan un tiempo de atención por pieza y este es IGUAL para todos las órdenes que sean del mismo tipo. El tiempo de cada orden es definido como argumento a la hora de iniciar la ejecución del programa.
  - Tome en cuenta que para la política Round Robin, la orden se atiende pieza por pieza.
  - Cada una de las clases que representen una política deben heredar de la clase abstracta `Policy` e implementar la interfaz `OrderManager` incluidas en las clases provistas para el proyecto. Todas estas deben pertenecer al paquete llamado `policies`, el cual es subpaquete del paquete `workshop`. Deben ser tres clases que correspondan a las políticas mencionadas anteriormente.
  - Las clases que representen a las políticas mencionadas, deberán ir modificando los campos heredados `currentOrders`, `queuedOrders` y `processedOrders` durante la ejecución del programa. Puede leer en la documentación las descripción de estos campos.  
@@ -127,7 +127,7 @@ El precio por pieza es de 1500 quetzales.
 Ya escogida la política, el workshop Scheduler debe empezar el 
 simulador e imprimir los datos correspondientes en la pantalla. 
  - Al correr la simulación, su programa debe desplegar en pantalla la siguiente información:
- - La cola de órdenes de entrada:  representando cada orden con el toString() ya implementado.
+ - La cola de órdenes de entrada:  representando cada orden.
  - Todos los datos de la orden que está siendo atendida.
  - La política que se está utilizando.
  - El número de órdenes ya atendidas (finalizadas) hasta el momento.
@@ -224,7 +224,7 @@ Los nombres de las clases correspondientes a las tres políticas pueden ser esco
 
 ## Puntos Extra
 Para poder implementar los puntos extra, debería haber terminado el proyecto completo, NO se meta a hacer puntos extra antes de terminarlo.
- - Ninguna politica adicional, se le tomara en cuenta, así que ni lo haga.
+ - Ninguna política adicional, se le tomará en cuenta, así que ni lo haga.
  - Puede implementar su proyecto en forma gráfica. (Applets o JFrames)
  - Puede implementar la documentación de Java para sus clases, que se pueda generar con Javadoc (formato API)
  - Cualquier cosa adicional (que no sea otra política) que implemente por su propia cuenta y se considere para puntos extra.
