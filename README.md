@@ -3,7 +3,7 @@
 ------------------------------------------------------------------------------
 **Proyecto:** WorkshopScheduler\
 **Tema:** Pilas, Colas, Paquetes, Herencia y Threads\
-**Fecha de Entrega:** 6 de octubre de 2019\
+**Fecha de Entrega:** Indicada en la asignación del GES\
 **Grupo:** Parejas\
 **Calificacion personal:** Nosotros le indicaremos la fecha.
 
