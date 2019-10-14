@@ -18,7 +18,7 @@ public abstract class PaintOrder {
     protected int painted;
 
     /**
-     * Falta ver que poner aqui.
+     * Constructor de un PaintOrder
      *
      * @param number número de orden
      * @param plate número de placa
@@ -51,6 +51,14 @@ public abstract class PaintOrder {
     public abstract String getPrice();
 
     /**
+     * Método que devuelve la cantidad a pagar sin descuento
+     * */
+    public abstract String getSubPrice();
+    /**
+     * Método que devuelve el descuento aplicado a la orden
+     * */
+    public abstract String getDiscount();
+    /**
      * Método que finaliza la órden. Debe cambiar el estado de la misma
      * */
     public abstract void end();
@@ -74,7 +82,7 @@ public abstract class PaintOrder {
         if (pieces > (this.total - this.painted) || pieces <= 0) {
             throw new Exception("Error, cantidad de piezas por pintar incorrecta");
         }
-        this.state = State.WAITING;
+        this.state = State.PROCESSING;
         this.painted = this.painted + pieces;
     }
 
@@ -132,6 +140,8 @@ public abstract class PaintOrder {
     public final State getState() {
         return state;
     }
+
+
 
     /** {@inheritDoc} */
     @Override

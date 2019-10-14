@@ -1,5 +1,6 @@
 package workshop.policies;
 
+import workshop.orders.*;
 
 /** Representa de forma general una política de atención. Todas las demás políticas deben de heredar de esta clase. */
 public abstract class Policy implements OrderManager {
